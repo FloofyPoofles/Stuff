@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+    float td; 
+    float x;
+    float y;
+    float z; 
+    float vx; 
+    float vy;
+    float vz;  
+    cin >> td; cin >> x; cin >> y; cin >> z; cin >> vx; cin >> vy; cin >> vz;
+    cout.setf(ios::fixed);
+    cout << setprecision(1) << x+vx*td << " ";
+    cout << setprecision(1) << y+vy*td << " ";
+    cout << setprecision(1) << z+vz*td;
+}
