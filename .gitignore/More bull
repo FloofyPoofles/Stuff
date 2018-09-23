@@ -1,0 +1,26 @@
+// Example program
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+    float yaw;
+    float pitch;
+    float roll;
+        cin >> yaw; 
+        cin >> pitch; 
+        cin >> roll;
+        double SHIT[3][3] = {
+            {cos(yaw)*cos(roll), -sin(yaw), cos(yaw)*sin(roll) },
+            {sin(pitch)*sin(roll)+cos(pitch)*cos(roll)*sin(yaw), cos(pitch)*cos(yaw), cos(pitch)*sin(yaw)*sin(roll)-cos(roll)*sin(pitch) },
+            {cos(pitch)*sin(roll)*sin(yaw)-cos(pitch)*sin(roll), cos(yaw)*sin(pitch), cos(pitch)*cos(roll)+sin(pitch)*sin(yaw)*sin(roll) }
+    };
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+        cout << SHIT[i][j]*180/M_PI<<endl;
+        }
+    }
+}
