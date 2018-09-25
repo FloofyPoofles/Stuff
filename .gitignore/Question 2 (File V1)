@@ -42,3 +42,51 @@ int main()
     
     cout << xx+xy+xz << " " << yx+yy+yz << " " << zx+zy+zz;
 }
+
+
+
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <string>
+#include <cmath>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+    float yaw1;
+    float pitch1;
+    float roll1;
+    float td; 
+    float x;
+    float y;
+    float z; 
+    float vx; 
+    float vy;
+    float vz;
+        ifstream fin("kinematics.in");
+        fin >> td >> x >> y >> z >> vx >> vy >> vz >> yaw1 >> pitch1 >> roll1;
+            float yaw = yaw1*M_PI/180;
+            float pitch = pitch1*M_PI/180;
+            float roll = roll1*M_PI/180;
+        float RM[3][3] = {
+            {cos(yaw)*cos(pitch), cos(yaw)*sin(pitch)*sin(roll)-cos(roll)*sin(yaw), sin(yaw)*sin(roll)+cos(yaw)*cos(roll)*sin(pitch)},
+            {cos(pitch)*sin(yaw), cos(yaw)*cos(roll)+sin(yaw)*sin(pitch)*sin(roll), cos(roll)*sin(yaw)*sin(pitch)-cos(yaw)*sin(roll)},
+            {-1*sin(pitch), cos(pitch)*sin(roll), cos(pitch)*cos(roll)}
+    };
+
+    cout << endl;
+    
+    float xx = (RM[0][0])*(vx*td+x);
+    float xy = (RM[0][1])*(vy*td+y);
+    float xz = (RM[0][2])*(vz*td+z);
+    float yx = (RM[1][0])*(vx*td+x);
+    float yy = (RM[1][1])*(vy*td+y);
+    float yz = (RM[1][2])*(vz*td+z);
+    float zx = (RM[2][0])*(vx*td+x);
+    float zy = (RM[2][1])*(vy*td+y);
+    float zz = (RM[2][2])*(vz*td+z);
+    
+    cout << xx+xy+xz << " " << yx+yy+yz << " " << zx+zy+zz;
+}
