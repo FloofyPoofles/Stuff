@@ -35,7 +35,7 @@ int main()
     float vy;
     float vz;  
     ifstream fin("kinematics.in");
-        fin >> td >> x >> y >> z >>vx >> vy >> vz;
+        fin >> td >> x >> y >> z >> vx >> vy >> vz;
     cout.setf(ios::fixed);
     cout << x+vx*td << " ";
     cout << y+vy*td << " ";
