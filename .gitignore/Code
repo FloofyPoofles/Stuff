@@ -18,3 +18,26 @@ int main()
     cout << setprecision(1) << y+vy*td << " ";
     cout << setprecision(1) << z+vz*td;
 }
+
+
+#include <iostream>
+#include <string>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+    float td; 
+    float x;
+    float y;
+    float z; 
+    float vx; 
+    float vy;
+    float vz;  
+    ifstream fin("kinematics.in");
+        fin >> td >> x >> y >> z >>vx >> vy >> vz;
+    cout.setf(ios::fixed);
+    cout << x+vx*td << " ";
+    cout << y+vy*td << " ";
+    cout << z+vz*td;
+}
