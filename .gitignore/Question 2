@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+    float yaw1;
+    float pitch1;
+    float roll1;
+    float td; 
+    float x;
+    float y;
+    float z; 
+    float vx; 
+    float vy;
+    float vz;  
+        cin >> td; 
+        cin >> x; 
+        cin >> y; 
+        cin >> z; 
+        cin >> vx; 
+        cin >> vy; 
+        cin >> vz;
+        cin >> yaw1; 
+        cin >> pitch1; 
+        cin >> roll1;
+            float yaw = yaw1*M_PI/180;
+            float pitch = pitch1*M_PI/180;
+            float roll = roll1*M_PI/180;
+        double RM[3][3] = {
+            {cos(yaw)*cos(pitch), cos(yaw)*sin(pitch)*sin(roll)-cos(roll)*sin(yaw), sin(yaw)*sin(roll)+cos(yaw)*cos(roll)*sin(pitch)},
+            {cos(pitch)*sin(yaw), cos(yaw)*cos(roll)+sin(yaw)*sin(pitch)*sin(roll), cos(roll)*sin(yaw)*sin(pitch)-cos(yaw)*sin(roll)},
+            {-1*sin(pitch), cos(pitch)*sin(roll), cos(pitch)*cos(roll)}
+    };
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+        cout << RM[i][j]<<endl;
+        }
+    }
+    cout << endl;
+    
+    float xx = (RM[0][0])*vx;
+    float xy = (RM[0][1])*vy;
+    float xz = (RM[0][2])*vz;
+    float yx = (RM[1][0])*vx;
+    float yy = (RM[1][1])*vy;
+    float yz = (RM[1][2])*vz;
+    float zx = (RM[2][0])*vx;
+    float zy = (RM[2][1])*vy;
+    float zz = (RM[2][2])*vz;
+    
+    cout << xx << endl;
+    cout << xy << endl;
+    cout << xz << endl;
+    cout << yx << endl;
+    cout << yy << endl;
+    cout << yz << endl;
+    cout << zx << endl;
+    cout << zy << endl;
+    cout << zz << endl << endl;
+    
+    cout << xx+xy+xz << " " << yx+yy+yz << " " << zx+zy+zz;
+    
+}
