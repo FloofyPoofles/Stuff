@@ -1,0 +1,111 @@
+// Example program
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//face=0, +x (east); face=1, -x (west); face=2, +y (north); face=3, -y (south);
+
+struct walker {
+    int x;
+    int y;
+    int face;
+};
+
+//Start point
+walker robot{0, 0, 2} ;
+
+void move_forward() {
+    switch (robot.face) {
+        case 0: robot.x=robot.x+1;  //move east
+            break;
+        case 1: robot.x=robot.x-1;  //move west
+            break;
+        case 2: robot.y=robot.y+1;  //move north
+            break;
+        case 3: robot.y=robot.y-1;  //move south
+            break;
+        default:
+            cout<< "move_forward operation not defined"<<endl;
+            break;
+    }
+    return;
+}
+
+void move_backward() {
+    switch (robot.face) {
+        case 0: robot.x=robot.x-1;  //face east, backward
+            break;
+        case 1: robot.x=robot.x+1;  //face west, backward
+            break;
+        case 2: robot.y=robot.y-1;  //face north, backward
+            break;
+        case 3: robot.y=robot.y+1;  //face south, backward.
+            break;
+        default:
+            cout<< "move_backward operation not defined"<<endl;
+            break;
+    }
+    return;
+}
+
+void turn_left() {
+    switch (robot.face) {
+        case 0: robot.face=2;  //face east --> north
+            break;
+        case 1: robot.face=3;  //face west --> south
+            break;
+        case 2: robot.face=1;  //face north --> west
+            break;
+        case 3: robot.face=0;  //face south --> east.
+            break;
+        default:
+            cout<< "turn_left operation not defined"<<endl;
+            break;
+    }
+    return;
+}
+
+void turn_right() {
+    switch (robot.face) {
+        case 0: robot.face=3;  //face east --> S
+            break;
+        case 1: robot.face=2;  //face west --> N
+            break;
+        case 2: robot.face=0;  //face north --> E
+            break;
+        case 3: robot.face=1;  //face south --> W.
+            break;
+        default:
+            cout<< "turn_right operation not defined"<<endl;
+            break;
+    }
+    return;
+}
+
+int main() {
+    int walks;
+    cin>>walks;
+    char *walk_sequence=new char[walks];
+    for(int i=0; i<walks; i++) {
+        cin>>walk_sequence[i];
+    }
+    for(int i=0; i<walks; i++) {
+        switch (walk_sequence[i]) {
+            case 'f': move_forward();
+                break;
+            case 'b': move_backward();
+                break;
+            case 'l': turn_left();
+                break;
+            case 'r': turn_right();
+                break;
+            default:
+                cout<<"Bad walk sequence"<<endl;
+                break;
+        }
+    }
+    cout<<"Final Position:" << robot.x <<" "<<robot.y<<endl;
+    cout<<"Final Face Direction(0:E,1:W,2:N,3:S):" << robot.face <<endl;
+}    
+ 
